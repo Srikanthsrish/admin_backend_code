@@ -1,5 +1,5 @@
 const express = require("express");
-const connection = require("../code/mysql.js"); // Adjust the path to your mysql.js
+const connection = require("./mysql.js"); // Adjust the path to your mysql.js
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -38,8 +38,6 @@ app.post("/api/admin/login", (req, res) => {
   });
 });
 
-// Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
-
+    console.log(`Server is running on http://localhost:${PORT}`);
+  }); 
