@@ -7,27 +7,14 @@ const app = express();
 const PORT = 5000;
 
 // Allowed Origins for CORS
-const allowedOrigins = [
-  "https://react-project-studygrid-xpsa-git-main-srikanthsrishs-projects.vercel.app",
-  "https://react-project-studygrid-xpsa.vercel.app",
-  "http://localhost:3000", // Add this for local development
-];
-
-// CORS Middleware
 app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (!allowedOrigins.includes(origin)) {
-        const msg = "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+    cors({
+      origin: "*", // Allow all origins temporarily
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true,
+    })
+  );
+  
 
 // Middleware
 app.use(bodyParser.json());
