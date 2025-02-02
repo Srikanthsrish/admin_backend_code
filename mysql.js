@@ -1,17 +1,44 @@
-var mysql=require("mysql2")
-require('dotenv').config();
-var conn=mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database:"studygrid" 
+// var mysql=require("mysql2")
+// require('dotenv').config();
+// var conn=mysql.createConnection({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database:"studygrid" 
+// });
+// console.log()
+// conn.connect((err)=>{
+//     if(err){
+//         console.log(err.message);
+//     }else{
+//         console.log("successfully connected")
+//     }
+// })
+// module.exports=conn
+
+const mysql = require("mysql2");
+require("dotenv").config();
+
+// ✅ Use a connection pool for better stability
+const pool = mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: "studygrid",
+    waitForConnections: true,
+    connectionLimit: 10, // Maximum active connections
+    queueLimit: 0,       // No limit on queued connections
 });
-console.log()
-conn.connect((err)=>{
-    if(err){
-        console.log(err.message);
-    }else{
-        console.log("successfully connected")
-    }
-})
-module.exports=conn
+
+// ✅ Convert pool to synchronous-style queries
+const conn = pool.promise();
+
+// Test connection
+conn.query("SELECT 1")
+    .then(() => console.log("✅ Successfully connected to MySQL"))
+    .catch((err) => {
+        console.error("❌ MySQL Connection Error:", err.message);
+        process.exit(1);
+    });
+
+module.exports = conn;
