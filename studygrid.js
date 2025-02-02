@@ -1,5 +1,5 @@
 const express = require("express");
-const connection = require("./mysql.js"); // Adjust the path to your mysql.js
+const connection = require("./mysql.js"); 
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require('dotenv').config();
