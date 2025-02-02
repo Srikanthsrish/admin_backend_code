@@ -993,6 +993,10 @@ app.get('/api/notices', (req, res) => {
   });
 });
 
+app.get('/your-api-endpoint', (req, res) => {
+  console.log('Request received');
+  res.send('API is working');
+});
 
 // Start Server
 app.listen(port, () => {

@@ -24,10 +24,11 @@ const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: "studygrid",
+    database:process.env.DB_NAME,
     waitForConnections: true,
     connectionLimit: 10, // Maximum active connections
     queueLimit: 0,       // No limit on queued connections
+    connectTimeout: 10000, 
 });
 
 // ✅ Convert pool to synchronous-style queries
