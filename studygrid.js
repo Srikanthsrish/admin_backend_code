@@ -209,10 +209,10 @@ app.get("/admin/profile", (req, res) => {
     if (results.length > 0) {
       res.json(results[0]); // Return the first admin found
     } else {
-      res.status(404).json({ message: "Admin profile not found" });
+      res.status(404).json({ message: "Admin profile not found"})
     }
-  });
-});
+  })
+})
 
 
 
