@@ -992,20 +992,7 @@ app.get('/api/notices', (req, res) => {
     res.json(results);  // Send the results back as JSON
   });
 });
-// Route to get all teachers
-app.get("/teachers", async (req, res) => {
-  try {
-    const [rows] = await connection.query("SELECT * FROM teachers");
-    console.log("Rows from database:", rows);  // Log the result to check
-    if (rows.length === 0) {
-      return res.status(404).json({ message: "No teachers found" });
-    }
-    res.json(rows); // Send the data as JSON response
-  } catch (err) {
-    console.error("Error fetching teachers:", err);
-    res.status(500).json({ message: "Database error", error: err.message });
-  }
-});
+
 
 app.get('/your-api-endpoint', (req, res) => {
   console.log('Request received');
